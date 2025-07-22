@@ -1,0 +1,4 @@
+module Utils
+Utils 1.0
+CustomBorder 1.0 CustomBorder.qml
+Stroke 1.0 Stroke.qml

@@ -1,0 +1,20 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/*.pyc": {
+            "when": "$(basename).py"
+        },
+        "**/__pycache__": true,
+        "lib64": true,
+        "include": true,
+        "bin": true,
+        "lib": true,
+        "pyvenv.cfg": true
+    },
+    "explorerExclude.backup": {}
+}

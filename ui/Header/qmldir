@@ -1,0 +1,3 @@
+module Header
+Header 1.0
+HeaderWidget 1.0 HeaderWidget.qml
