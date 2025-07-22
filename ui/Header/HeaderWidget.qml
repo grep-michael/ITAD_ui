@@ -3,6 +3,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Theme 1.0
 import Utils 1.0
+import MessageSystem 1.0
+import CustomTypes 1.0
 
 Rectangle{
     id: headerWidget
@@ -18,15 +20,23 @@ Rectangle{
 
     color: Colors.backgroundHighlightColor
     
-    
+    function sendQuickMessage() {
+        let message = MessageManager.createMessage("test","test","test",{"data":headerWidget.logoText})
+        MessageManager.emitMessage(message)
+        //MessageManager.sendMessage(
+        //    "info",
+        //    "Quick Message", 
+        //    "Created and sent in one call",
+        //    {"source": "QML Button"}
+        //)
+    }
 
-
-    signal helpClicked()
     signal settingsClicked()
     signal reportIssueClicked()
     signal shutdownClicked()
+
     Stroke{
-        strokeBottom: 10
+        strokeBottom: 2
         strokeColor: Colors.primaryColor
     }
     RowLayout{
@@ -57,7 +67,7 @@ Rectangle{
         }
         HeaderButton{
             buttonText: "?"
-            onClicked: headerWidget.helpClicked()
+            onClicked: headerWidget.sendQuickMessage()
         }
         HeaderButton {
             text: "⚠"

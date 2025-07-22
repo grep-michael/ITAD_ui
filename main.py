@@ -5,6 +5,7 @@ import os
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtCore import QUrl, QFileSystemWatcher, QTimer
+from MessageHandler import *
 
 # Try to import QQuickStyle, fallback if not available
 try:
@@ -29,7 +30,10 @@ class QMLLivePreview:
         self.reload_timer = QTimer()
         self.reload_timer.timeout.connect(self.perform_reload)
         self.reload_timer.setSingleShot(True)
-        
+
+        register_qml_types()
+
+
         ui_location = os.path.abspath("ui")
         self.engine.addImportPath(os.path.abspath("ui"))
         #self.engine.addImportPath(os.path.abspath(""))
@@ -38,7 +42,7 @@ class QMLLivePreview:
 
         if HAS_QUICK_STYLE:
             QQuickStyle.setStyle("Material")
-    
+
     def load_qml_file(self, qml_file):
         """Load and watch a QML file"""
         if not os.path.exists(qml_file):
