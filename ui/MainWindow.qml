@@ -5,7 +5,7 @@ import QtQuick.Window 2.15
 import Theme 1.0
 import Header 1.0
 import Utils 1.0
-
+import NetworkManager 1.0
 
 Window{
     id: mainWindow
@@ -32,6 +32,13 @@ Window{
             id: headerWidget
             Layout.fillWidth: true
             Layout.preferredHeight: mainWindow.headerHeight
+            Layout.minimumHeight: 60
+
+            width: mainWindow.width
+            height: mainWindow.headerHeight
+        }
+        NetworkManager{
+            Layout.preferredHeight: mainWindow.menuHeight
             Layout.minimumHeight: 60
 
             width: mainWindow.width

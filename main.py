@@ -6,6 +6,9 @@ from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtCore import QUrl, QFileSystemWatcher, QTimer
 from MessageHandler import *
+from PyQt5.QtQml import qmlRegisterSingletonType,qmlRegisterType
+
+from ui.NetworkManager.Backend import *
 
 # Try to import QQuickStyle, fallback if not available
 try:
@@ -33,10 +36,11 @@ class QMLLivePreview:
 
         register_qml_types()
 
+        qmlRegisterType(NetworkMonitor, "NetworkMonitor", 1, 0, "NetworkMonitor")
+
 
         ui_location = os.path.abspath("ui")
-        self.engine.addImportPath(os.path.abspath("ui"))
-        #self.engine.addImportPath(os.path.abspath(""))
+        self.engine.addImportPath(ui_location)
         
         print("Import paths:", self.engine.importPathList())
 
@@ -58,9 +62,6 @@ class QMLLivePreview:
         if directory not in self.file_watcher.directories():
             self.file_watcher.addPath(directory)
         
-        # Add import paths
-        self.engine.addImportPath(os.path.abspath("."))
-        self.engine.addImportPath(os.path.abspath("Theme"))
         
         return self.reload_qml()
     
